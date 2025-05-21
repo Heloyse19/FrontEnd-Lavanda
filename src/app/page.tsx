@@ -1,8 +1,8 @@
-
 export default function Home() {
   return (
-    <div>
-      <p></p>
-    </div>
+    <>
+      <h1>Pagina Login</h1>
+    </>
   );
 }
+
