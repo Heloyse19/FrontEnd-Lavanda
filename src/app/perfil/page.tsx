@@ -14,9 +14,6 @@ const UserProfile = () => {
     cidade: "São Paulo",
     estado: "SP",
     cep: "01234-567",
-    bio: "Apaixonado por tecnologia e programação. Gosto de viajar e ler livros.",
-    linkedin: "https://linkedin.com/in/piranguinho",
-    twitter: "https://twitter.com/piranguinho",
     senhaAtual: "",
     novaSenha: "",
     confirmaSenha: "",
@@ -54,7 +51,7 @@ const UserProfile = () => {
         <div className="flex flex-col items-center w-1/3">
           <div className="relative w-40 h-40 mb-6">
             <img
-              src={selectedImage || "/images/download.jpg"}
+              src={selectedImage || "/Img/imagem_padrao.jpg"}
               alt="Foto do usuário"
               className="w-40 h-40 rounded-full object-cover shadow-lg border-4 border-white"
             />
