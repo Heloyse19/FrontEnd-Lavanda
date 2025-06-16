@@ -24,11 +24,11 @@ interface Lavanderia {
 interface Agendamento {
   idAgendamento: number;
   nomeLavanderia: string;
-  endereco: Endereco;
-  dataAgendamento: string;
-  horaAgendamento: string;
+  data: string;
+  hora: string;
   descricao?: string;
-  tipoSabao?: string;
+  tipoSabao: string;
+  endereco: Endereco;
 }
 
 export default function Home() {
@@ -36,7 +36,7 @@ export default function Home() {
   const [lavanderias, setLavanderias] = useState<Lavanderia[]>([]);
   const [erro, setErro] = useState("");
   const [nomePerfil, setNomePerfil] = useState("");
-  const [fotoPerfil, setFotoPerfil] = useState(""); // novo estado para foto
+  const [fotoPerfil, setFotoPerfil] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [lavanderiaSelecionada, setLavanderiaSelecionada] = useState<Lavanderia | null>(null);
   const [data, setData] = useState("");
@@ -137,9 +137,9 @@ export default function Home() {
         idCliente: idUser,
         idLavanderia,
         descricao,
-        dataAgendamento: data,
-        horaAgendamento: hora,
-        tipoSabao,
+        data: data,
+        hora: hora,
+        tipoSabao: tipoSabao
       }),
     }).then(() => {
       handleCloseModal();
@@ -147,14 +147,14 @@ export default function Home() {
       if (idUser) {
         fetch(`${BASE_URL}/agendamentos/listar_agendamentosClientes/${idUser}`)
           .then((res) => res.json())
-          .then((data) => setProximosAgendamentos(data.slice(0, 3)));
+          .then((data) => setProximosAgendamentos(data.slice(3, 5)));
       }
     });
   };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    router.push("/login");
+    router.push("/");
   };
 
   const toggleDetalhes = (id: number) => {
@@ -235,7 +235,7 @@ export default function Home() {
                   </p>
                   <p className="text-xs break-words">{agendamento.endereco.bairro}</p>
                   <p className="text-xs mt-1">
-                    Data: {agendamento.dataAgendamento} - Hora: {agendamento.horaAgendamento}
+                    Data: {agendamento.data} - Hora: {agendamento.hora}
                   </p>
                 </div>
               ))
@@ -409,10 +409,10 @@ export default function Home() {
               <strong>Endereço:</strong> {agendamentoAberto.endereco.rua}, {agendamentoAberto.endereco.numero} - {agendamentoAberto.endereco.bairro}, {agendamentoAberto.endereco.cidade}
             </p>
             <p>
-              <strong>Data:</strong> {agendamentoAberto.dataAgendamento}
+              <strong>Data:</strong> {agendamentoAberto.data}
             </p>
             <p>
-              <strong>Hora:</strong> {agendamentoAberto.horaAgendamento}
+              <strong>Hora:</strong> {agendamentoAberto.hora}
             </p>
             {agendamentoAberto.tipoSabao && (
               <p>
