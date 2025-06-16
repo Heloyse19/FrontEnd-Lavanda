@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.input-pesquisa {
+  @apply 
+  w-full 
+  max-w-lg 
+  px-4 py-2 
+  border-2 
+  border-gray-400 
+  rounded-2xl 
+  bg-white;
+}
